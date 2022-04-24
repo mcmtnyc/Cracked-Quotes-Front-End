@@ -1,7 +1,7 @@
 # Cracked Quotes Front-End
 
 This is a random quote generator interating with Scott's quotes API.
-Link >>>
+Link >>> https://cosmic-cactus-ffb6fb.netlify.app/
 
 ** Please note that due to CORS issue, axios calls are not going through right now, the code for this is commented out and a .json file is used for content.
 
