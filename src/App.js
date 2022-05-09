@@ -1,60 +1,66 @@
 import "./App.css";
 import React from "react";
 import { useRef, useEffect, useState } from "react";
-import axios from "axios";
-import quotes from "./tenquotes.json"
+import cocktailData from "./Data";
 
 function App() {
 
-  /// Give state to loaded quote
-  const [quote, setQuote] = useState([]);
-  const [author, setAuthor] = useState([]);
+  const [cocktailName, setCocktailName] = useState([]);
+  const [cocktailImg, setCocktailImg] = useState([]);
+  let [index, setIndex] = useState(1)
 
-  // /// Get quote function
-  // let getQuote = async () => {
-  //   let result = await axios.get(
-  //     "https://cracked-wisdom.herokuapp.com/quotes/random"
-  //   );
-  //   setQuote(result.data[0].quote);
-  //   setAuthor(result.data[0].author)
-  // };
+  const nextSlide = () => {
+    if (index === 10) {
+      setIndex(0)
+    }
+    else
+    setIndex(index + 1)
+    setCocktailName(cocktailData[index].strDrink)
+    setCocktailImg(cocktailData[index].strDrinkThumb)
+    console.log('nextslide')
+  }
+  const prevSlide = () => {
+    if (index === 0) {
+      setIndex(10)
+    }
+    else
+    setIndex(index - 1)
+    setCocktailName(cocktailData[index].strDrink)
+    setCocktailImg(cocktailData[index].strDrinkThumb)
+    console.log('prevslide')
+    console.log(index)
+  }
+  const restartSlides = () => {
+    setIndex(0)
+    setCocktailName(cocktailData[index].strDrink)
+    setCocktailImg(cocktailData[index].strDrinkThumb)
+    console.log('restartslides')
+    console.log(index)
+  }
 
-  // /// On load get quote
-  // useEffect(() => {
-  //   console.log('useEffect')
-  //   getQuote()
-
-  // }, []);
-  
-  let random = Math.floor(Math.random() * 10)
-  let getQuote = () => {
-    setQuote(quotes[random].quote)
-    setAuthor(quotes[random].author)
-}
-
-    /// On load get quote
   useEffect(() => {
-    getQuote()
+    restartSlides()
   }, []);
-
+  
   return (
     <div className="App">
-      <h1>Welcome to Cracked Quotes Front-End</h1>
-      <h5>Click to grab a quote from the Cracked Quote API</h5>
-      <button onClick={getQuote} class="quoteButton">
-        Grab a Quote
-      </button>
-      <div className="quoteContainer">
-      <h2 className="authorName">{author}</h2>
-        <div className="overlayContainer">
-        <img className="img" src={require("./Quote-BG.png")}></img>
-          <h3 className="quoteBody">{quote}</h3>
-        </div>
-        
-        
-       
+      <div class="mainBox">
+        <div class="cocktails">
+        <img src={require("./logo.png")} className="logo"></img>
+    <h4 className="cocktailName">{cocktailName}</h4>
+      <img className="img" src={cocktailImg}></img>
+      <div onClick={restartSlides} className="restart">
+        Restart
       </div>
-    </div>
+      <div onClick={nextSlide} className="next">
+       🥃 Next 🍸 
+      </div>
+      <div onClick={prevSlide} className="prev">
+       🍹 Previous 🍷 
+      </div>
+        </div>
+      </div>
+      </div>
   )
 }
 
