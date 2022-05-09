@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# Cracked Quotes Front-End
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a random quote generator interating with Scott's quotes API.
+Link >>> https://cosmic-cactus-ffb6fb.netlify.app/
+
+** Please note that due to CORS issue, axios calls are not going through right now, the code for this is commented out and a .json file is used for content.
+
+# Tech Used
+- React
+- HTML, CSS, JS
+- Netlify
 
 ## Available Scripts
 
